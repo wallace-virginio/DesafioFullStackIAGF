@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # --- Serviço do Banco de Dados (PostgreSQL) ---
+  db:
+    image: postgres:14-alpine
+    container_name: marketplace-db
+    ports:
+      - "5432:5432" 
+    environment:
+      - POSTGRES_DB=marketplace_db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=adminpass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # --- Serviço do Backend (Java/SpringBoot) ---
+  backend:
+    container_name: marketplace-backend
+    build:
+      context: ./backend-springboot 
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=jdbc:postgresql://db:5432/marketplace_db 
+      - DB_USER=admin
+      - DB_PASSWORD=adminpass
+    depends_on:
+      - db 
+
+volumes:
+  postgres_data:

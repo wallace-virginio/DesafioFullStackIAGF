@@ -1,0 +1,17 @@
+<form
+  [formGroup]="searchForm"
+  (ngSubmit)="onSearchSubmit()"
+  class="search-container"
+>
+  <div class="form-group">
+    <input
+      formControlName="query"
+      type="search"
+      placeholder="Busque por 'doces até 50 reais'..."
+    />
+  </div>
+
+  <button type="submit" [disabled]="isLoading" class="btn btn-primary">
+    {{ isLoading ? "Buscando..." : "Buscar" }}
+  </button>
+</form>

@@ -1,0 +1,61 @@
+services:
+  # Serviço do Python (Python/FastAPI)
+  backend:
+    build:
+      context: ./Python
+      dockerfile: Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./Python:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    depends_on:
+      db: # AGORA DEPENDE DO HEALTHCHECK
+        condition: service_healthy
+
+  # Serviço do Angular (Angular)
+  frontend: 
+    build:
+      context: ./Angular
+      dockerfile: Dockerfile # Você estava sem essa linha, é mais seguro ter
+    command: ng serve --host 0.0.0.0 --port 4200
+    volumes:
+      - ./Angular:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+
+  # Serviço do Banco de Dados (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    # --- ADIÇÃO CRÍTICA 1: HEALTHCHECK ---
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- ADIÇÃO CRÍTICA 2: SERVIÇO DE SEED ---
+  seed:
+    build:
+      context: ./Python # Usa a mesma imagem do backend
+      dockerfile: Dockerfile
+    command: python seed.py # Roda o script de seed
+    volumes:
+      - ./Python:/app
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy # Espera o DB estar pronto
+
+volumes:
+  postgres_data:

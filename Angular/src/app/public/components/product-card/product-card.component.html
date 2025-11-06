@@ -1,0 +1,12 @@
+<div class="product-card" *ngIf="product">
+  <img [src]="product.image_url" [alt]="product.name" />
+  <div class="product-info">
+    <h3>{{ product.name }}</h3>
+    <p class="product-category">{{ product.category }}</p>
+    <p class="product-price">{{ product.price | currency : "BRL" }}</p>
+
+    <button (click)="onAddToCart()" class="btn btn-primary">
+      Adicionar ao Carrinho
+    </button>
+  </div>
+</div>

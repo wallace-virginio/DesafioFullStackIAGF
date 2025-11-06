@@ -1,0 +1,107 @@
+# =========================================
+# 🔹 GERAL
+# =========================================
+node_modules/
+dist/
+.env
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.sqlite3
+*.db
+*.bak
+*.orig
+*.rej
+
+# =========================================
+# 🔹 PYTHON / BACKEND
+# =========================================
+# Virtual envs
+venv/
+env/
+.venv/
+ENV/
+build/
+develop-eggs/
+.installed.cfg
+*.manifest
+*.spec
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Django / Flask stuff
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# =========================================
+# 🔹 ANGULAR / FRONTEND
+# =========================================
+# Angular build artifacts
+.angular/
+.angular/cache/
+.angular/cache/**
+.angular/cache/**
+.angular/**
+.angular/cache
+.angular/**
+.tmp/
+out-tsc/
+coverage/
+*.js.map
+
+# Environment files
+src/environments/environment*.ts
+
+# npm / yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# =========================================
+# 🔹 SISTEMA OPERACIONAL
+# =========================================
+# macOS
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~

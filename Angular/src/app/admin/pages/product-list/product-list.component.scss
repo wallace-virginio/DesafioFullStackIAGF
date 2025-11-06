@@ -1,0 +1,53 @@
+:host {
+  display: block;
+  padding: 2rem;
+  background: var(--page-bg);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+
+  h1 {
+    margin: 0;
+    color: var(--dark-color);
+  }
+
+  div {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+
+  th,
+  td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  th {
+    font-weight: 600;
+    background-color: var(--light-gray);
+    color: var(--dark-color);
+  }
+
+  tbody tr:hover {
+    // CORREÇÃO: Substitua o 'lighten()' por uma cor estática
+    background-color: #fafafa;
+  }
+
+  td:last-child {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

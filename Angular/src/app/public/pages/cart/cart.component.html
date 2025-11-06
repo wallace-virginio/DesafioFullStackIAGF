@@ -1,0 +1,32 @@
+<div class="cart-container">
+  <h2>Meu Carrinho</h2>
+  <a routerLink="/">Voltar ao Catálogo</a>
+
+  <div *ngIf="cartItems$ | async as items; else loading">
+    <div *ngIf="items.length > 0; else emptyCart">
+      <div *ngFor="let item of items" class="cart-item">
+        <span>{{ item.product.name }}</span>
+        <span>(Qtd: {{ item.quantity }})</span>
+        <span>{{ item.product.price * item.quantity | currency : "BRL" }}</span>
+      </div>
+
+      <hr />
+
+      <button
+        (click)="onCheckout()"
+        [disabled]="isLoading"
+        class="btn btn-primary btn-checkout"
+      >
+        {{ isLoading ? "Processando..." : "Realizar Pedido" }}
+      </button>
+    </div>
+
+    <ng-template #emptyCart>
+      <p>Seu carrinho está vazio.</p>
+    </ng-template>
+  </div>
+
+  <ng-template #loading>
+    <p>Carregando carrinho...</p>
+  </ng-template>
+</div>

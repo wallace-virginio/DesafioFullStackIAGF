@@ -1,0 +1,111 @@
+.catalog-container {
+  max-width: 1400px; // Um pouco mais largo para os cards
+  margin: 0 auto;
+  padding: var(--base-spacing);
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+  background-color: var(--dark-color);
+  color: #fff;
+  border-radius: var(--border-radius);
+  padding: var(--base-spacing) calc(var(--base-spacing) * 2);
+
+  h1 {
+    margin: 0;
+    color: #fff;
+  }
+
+  a {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+}
+.btn-login {
+  background-color: #fff;
+  color: #c62828;
+  border: 2px solid #c62828;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+.btn-login:hover {
+  background-color: #c62828;
+  color: #fff !important;
+  border-color: #c62828;
+}
+
+app-search-bar {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0 var(--base-spacing);
+}
+
+.ai-interpretation {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #fde0dc; // Vermelho muito claro
+  border: 1px solid #e53935;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  padding: var(--base-spacing) calc(var(--base-spacing) * 2); // Padding horizontal maior
+}
+
+.catalog-body {
+  display: grid;
+  grid-template-columns: 280px 1fr; // Sidebar e Grelha
+  gap: 2rem;
+  padding: 0 var(--base-spacing); // Padding horizontal para alinhar
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filters {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  align-self: start;
+
+  h4 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+  }
+
+  // Ajusta a aparência do select
+  select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23757575%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.1%204.6-13%2011.1L128.8%20220a17.6%2017.6%200%200%200%2026.4%200l116.8-143.9c-.9-6.5-6.5-11.1-13-11.1z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 0.8em auto;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 2.5rem;
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); // Cards mais largos
+  gap: 1.5rem;
+}
+
+.loading,
+.no-results {
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 4rem;
+  color: var(--secondary-color);
+  grid-column: 1 / -1;
+}

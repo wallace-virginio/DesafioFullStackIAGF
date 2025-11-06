@@ -1,0 +1,30 @@
+.search-container {
+  display: flex;
+  width: 100%;
+  align-items: stretch; // Estica os itens para ter a mesma altura
+  background-color: var(--card-bg); // Fundo branco para a barra de busca
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden; // Para as bordas do input/botão
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 0;
+
+  input[type="search"] {
+    border: none; // Remove a borda original do input
+    height: 100%; // Ocupa a altura total do container
+    padding: 0.75rem 1.25rem; // Padding maior para o input
+    font-size: 1.05rem;
+  }
+}
+
+button {
+  border: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.05rem;
+  transition: background-color 0.2s ease;
+  }

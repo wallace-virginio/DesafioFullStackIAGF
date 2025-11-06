@@ -1,0 +1,43 @@
+<div class="admin-container">
+  <header>
+    <h1>Meus Produtos</h1>
+    <div>
+      <a routerLink="/admin/new" class="btn btn-primary">Novo Produto</a>
+      <button (click)="logout()" class="btn btn-secondary">Logout</button>
+    </div>
+  </header>
+
+  <div *ngIf="products$ | async as products; else loading">
+    <table *ngIf="products.length > 0; else noProducts">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Categoria</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price | currency:'BRL' }}</td>
+          <td>{{ product.stock_qty }}</td>
+          <td>
+            <a [routerLink]="['/admin/edit', product.id]" class="btn btn-sm">Editar</a>
+            <button (click)="deleteProduct(product.id)" class="btn btn-sm btn-danger">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <ng-template #noProducts>
+      <p>Nenhum produto cadastrado. Comece criando um novo!</p>
+    </ng-template>
+  </div>
+  
+  <ng-template #loading>
+    <p>Carregando produtos...</p>
+  </ng-template>
+</div>

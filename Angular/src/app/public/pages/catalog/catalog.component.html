@@ -1,0 +1,67 @@
+<div class="catalog-container">
+  <header class="catalog-header">
+    <h1>ImpactoPlace</h1>
+    <a routerLink="/login" class="btn-login">Login da ONG</a>
+  </header>
+
+  <app-search-bar
+    (filtersApplied)="onFiltersFromAI($event)"
+    (aiInterpretation)="aiInterpretation = $event"
+  >
+  </app-search-bar>
+
+  <div *ngIf="aiInterpretation" class="ai-interpretation">
+    {{ aiInterpretation }}
+  </div>
+
+  <div class="catalog-body">
+    <aside class="filters" [formGroup]="manualFiltersForm">
+      <h4>Filtros</h4>
+
+      <div class="form-group">
+        <label for="category">Categoria</label>
+        <select id="category" formControlName="category">
+          <option value="">Todas</option>
+          <option *ngFor="let cat of categories$ | async" [value]="cat">
+            {{ cat }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="price_min">Preço Mínimo</label>
+        <input
+          id="price_min"
+          type="number"
+          formControlName="price_min"
+          placeholder="R$"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="price_max">Preço Máximo</label>
+        <input
+          id="price_max"
+          type="number"
+          formControlName="price_max"
+          placeholder="R$"
+        />
+      </div>
+    </aside>
+
+    <main class="product-grid">
+      <div *ngIf="products$ | async as products; else loading">
+        <app-product-card
+          *ngFor="let product of products"
+          [product]="product"
+          (addToCart)="handleAddToCart($event)"
+        >
+        </app-product-card>
+      </div>
+    </main>
+  </div>
+
+  <ng-template #loading>
+    <p class="loading">Carregando produtos...</p>
+  </ng-template>
+</div>
